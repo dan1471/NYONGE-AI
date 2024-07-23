@@ -1,0 +1,31 @@
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis AI Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar hideable-sidebar" id="sidebar">
+
+        <button id="hideSidebarBtn">=/</button>
+        <button id="showSidebarBtn" style="display: none;">-</button></button>
+        <button id="newChatBtn">New Chat</button>
+        <h2>Previous Chats</h2>
+        <div id="chatHistory"></div>
+    </div>
+    <div class="main-container">
+        <h1>NYONGE-AI </h1>
+        <div class="chatbox" id="chatbox">
+            <div class="message system">Hello! I am NYONGE-AI. How can I assist you today?</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="commandInput" placeholder="Enter your command">
+            <button id="executeBtn">Send</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+		<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+ <script type="text/javascript">
+	window.tailwind.config = {
+		darkMode: ['class'],
+		theme: {
+			extend: {
+				colors: {
+					border: 'hsl(var(--border))',
+					input: 'hsl(var(--input))',
+					ring: 'hsl(var(--ring))',
+					background: 'hsl(var(--background))',
+					foreground: 'hsl(var(--foreground))',
+					primary: {
+						DEFAULT: 'hsl(var(--primary))',
+						foreground: 'hsl(var(--primary-foreground))'
+					},
+					secondary: {
+						DEFAULT: 'hsl(var(--secondary))',
+						foreground: 'hsl(var(--secondary-foreground))'
+					},
+					destructive: {
+						DEFAULT: 'hsl(var(--destructive))',
+						foreground: 'hsl(var(--destructive-foreground))'
+					},
+					muted: {
+						DEFAULT: 'hsl(var(--muted))',
+						foreground: 'hsl(var(--muted-foreground))'
+					},
+					accent: {
+						DEFAULT: 'hsl(var(--accent))',
+						foreground: 'hsl(var(--accent-foreground))'
+					},
+					popover: {
+						DEFAULT: 'hsl(var(--popover))',
+						foreground: 'hsl(var(--popover-foreground))'
+					},
+					card: {
+						DEFAULT: 'hsl(var(--card))',
+						foreground: 'hsl(var(--card-foreground))'
+					},
+				},
+			}
+		}
+	}
+</script>
+<style type="text/tailwindcss">
+	@layer base {
+		:root {
+			--background: 240 10% 10%; /* Dark background */
+			--foreground: 0 0% 90%; /* Light text */
+			--card: 240 10% 15%; /* Slightly lighter background for cards */
+			--card-foreground: 0 0% 90%; /* Light text on card */
+			--popover: 240 10% 15%; /* Same as card */
+			--popover-foreground: 0 0% 90%; /* Same as card text */
+			--primary: 0 0% 90%; /* Light primary color */
+			--primary-foreground: 240 10% 10%; /* Dark primary text */
+			--secondary: 0 0% 80%; /* Medium-light secondary color */
+			--secondary-foreground: 0 0% 90%; /* Light text on secondary */
+			--muted: 0 0% 80%; /* Medium-muted color */
+			--muted-foreground: 0 0% 70%; /* Slightly darker muted text */
+			--accent: 0 0% 80%; /* Medium-light accent color */
+			--accent-foreground: 0 0% 90%; /* Light accent text */
+			--destructive: 0 80% 60%; /* Bright destructive color */
+			--destructive-foreground: 0 0% 90%; /* Light text for destructive actions */
+			--border: 240 10% 25%; /* Dark border color */
+			--input: 240 10% 20%; /* Dark input background */
+			--ring: 240 10% 25%; /* Dark ring color */
+			--radius: 0.5rem;
+		}
+		.dark {
+			--background: 240 10% 10%; /* Dark background */
+			--foreground: 0 0% 90%; /* Light text */
+			--card: 240 10% 15%; /* Dark card background */
+			--card-foreground: 0 0% 90%; /* Light text on card */
+			--popover: 240 10% 15%; /* Same as card */
+			--popover-foreground: 0 0% 90%; /* Same as card text */
+			--primary: 0 0% 90%; /* Light primary color */
+			--primary-foreground: 240 10% 10%; /* Dark primary text */
+			--secondary: 0 0% 80%; /* Medium-light secondary color */
+			--secondary-foreground: 0 0% 90%; /* Light text on secondary */
+			--muted: 0 0% 80%; /* Medium-muted color */
+			--muted-foreground: 0 0% 70%; /* Slightly darker muted text */
+			--accent: 0 0% 80%; /* Medium-light accent color */
+			--accent-foreground: 0 0% 90%; /* Light accent text */
+			--destructive: 0 80% 60%; /* Bright destructive color */
+			--destructive-foreground: 0 0% 90%; /* Light text for destructive actions */
+			--border: 240 10% 25%; /* Dark border color */
+			--input: 240 10% 20%; /* Dark input background */
+			--ring: 240 10% 25%; /* Dark ring color */
+		}
+	}
+</style>
+
+  </head>
+  <body>
+    <body class="bg-background text-foreground font-sans">
+    <header class="flex items-center justify-between p-4">
+        <div class="text-xl font-bold">NYONGE-AI</div>
+        <nav>
+            <ul class="flex space-x-4">
+                <li class="menu-item">Home</li>
+                <li class="menu-item">Chat</li>
+                <li class="menu-item">Developer</li>
+                <li class="menu-item">Support</li>
+            </ul>
+        </nav>
+    </header>
+    <main class="flex flex-col items-center justify-center h-screen">
+        <button class="bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary p-3 rounded-lg transition duration-300 ease-in-out" onclick="window.location.href='landingpage.html'">START CHAT</button>
+        <div id="typing-text" class="mt-4 text-center"></div>
+    </main>
+    <script>
+        const typingText = document.getElementById('typing-text');
+        const sentences = ["This is a free open-source project MADE BY DANCAN NYONGESA", "Welcome to NYONGE-AI"];
+        let index = 0;
+        let charIndex = 0;
+        let typingEffect;
+        function typeSentence() {
+            if (charIndex < sentences[index].length) {
+                typingText.textContent += sentences[index].charAt(charIndex);
+                charIndex++;
+                typingEffect = setTimeout(typeSentence, 50);
+            } else {
+                clearTimeout(typingEffect);
+                setTimeout(eraseSentence, 1500);
+            }
+        }
+        function eraseSentence() {
+            if (charIndex >= 0) {
+                typingText.textContent = sentences[index].substring(0, charIndex);
+                charIndex--;
+                typingEffect = setTimeout(eraseSentence, 30);
+            } else {
+                index = (index + 1) % sentences.length;
+                setTimeout(typeSentence, 500);
+            }
+        }
+        typeSentence();
+    </script>
+</body>
+
+  </body>
+</html>

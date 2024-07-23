@@ -1,0 +1,190 @@
+ :root {
+    --background: 240 10% 10%; /* Dark background */
+    --foreground: 0 0% 90%; /* Light text color */
+    --sidebar: 240 10% 15%; /* Sidebar background */
+    --primary: 0 0% 90%; /* Primary color */
+    --primary-foreground: 240 10% 10%; /* Primary text color */
+    --primary-hover: 0 0% 80%; /* Hover color for primary button */
+    --chat-background: 240 10% 20%; /* Chat history background */
+    --user-color: 0 100% 50%; /* User color */
+    --assistant-message: 0 0% 0%; /* Black background for assistant message */
+    --assistant-text: 0 0% 90%; /* More white text color for assistant message */
+    --main-background: 240 10% 15%; /* Main container background */
+    --chatbox-background: 240 10% 25%; /* Chatbox background */
+    --system-message: 60 100% 50%; /* System message background */
+    --system-message-text: 0 0% 0%; /* System message text color */
+    --user-message: 30 10% 20%; /* User message background */
+    --user-text: 0 0% 90%; /* User message text color */
+    --typing-message: 0 100% 30%; /* Typing message background */
+    --typing-text: 0 0% 80%; /* Typing message text color */
+    --input-background: 240 10% 20%; /* Input background */
+    --input-text: 0 0% 90%; /* Input text color */
+}
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: hsl(var(--background)); /* Dark background */
+    color: hsl(var(--foreground)); /* Light text color */
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 25%; /* Reduced width to 25% of the screen */
+    max-width: 300px; /* Maximum width */
+    background-color: hsl(var(--sidebar)); /* Slightly lighter dark background */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease; /* Smooth hide/show transition */
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%); /* Hide sidebar */
+}
+
+.sidebar button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(var(--primary)); /* Primary color */
+    color: hsl(var(--primary-foreground)); /* Light text color for buttons */
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.sidebar button:hover {
+    background-color: hsl(var(--primary-hover)); /* Slightly lighter primary color for hover */
+}
+
+.sidebar h2 {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+#chatHistory {
+    width: 100%;
+}
+
+.chat-history-item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: hsl(var(--chat-background)); /* Slightly darker chat background */
+    border-radius: 5px;
+}
+
+.chat-history-user {
+    color: hsl(var(--user-color)); /* User color */
+    font-weight: bold;
+}
+
+.chat-history-assistant {
+    color: hsl(var(--assistant-text)); /* More white text color */
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    margin-left: 25%; /* Adjusted to make room for the sidebar */
+    width: 100%;
+    height: 90%; /* Half of the screen height */
+    background-color: hsl(var(--main-background)); /* Main container background */
+    overflow-y: auto;
+    transition: margin-left 0.3s ease; /* Smooth transition when sidebar is hidden */
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: hsl(var(--foreground)); /* Light text color */
+}
+
+.chatbox {
+    background-color: hsl(var(--chatbox-background)); /* Chatbox background */
+    border-radius: 10px;
+    padding: 10px;
+    height: 50vw; /* Half of the screen height */
+    width: 50vw; /* Half of the screen width */
+    max-width: 800px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+.message.system {
+    background-color: hsl(var(--system-message)); /* System message background */
+    color: hsl(var(--system-message-text)); /* System message text color */
+    align-self: center;
+}
+
+.message.user {
+    background-color: hsl(var(--user-message)); /* User message background */
+    color: hsl(var(--user-text)); /* User message text color */
+    align-self: flex-end;
+}
+
+.message.assistant {
+    background-color: hsl(var(--assistant-message)); /* Assistant message background */
+    color: hsl(var(--assistant-text)); /* More white text color */
+    align-self: flex-start;
+}
+
+.message.typing {
+    background-color: hsl(var(--typing-message)); /* Typing message background */
+    color: hsl(var(--typing-text)); /* Typing message text color */
+    align-self: flex-start;
+    font-style: italic;
+}
+
+.input-area {
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    max-width: 800px;
+}
+
+input[type="text"] {
+    width: 75%;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: hsl(var(--input-background)); /* Input background */
+    color: hsl(var(--input-text)); /* Input text color */
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(var(--primary)); /* Primary color */
+    color: hsl(var(--primary-foreground)); /* Button text color */
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: hsl(var(--primary-hover)); /* Slightly lighter primary color for hover */
+}
