@@ -61,7 +61,7 @@
             ]
         }, {
             headers: {
-                'Authorization': `Bearer aeeea78df44f4f32adb78dc20c988de4`
+                'Authorization': `Bearer  (YOU API KEY AND REMOVE THE BRAKETS)`
             }
         })
         .then(response => {
